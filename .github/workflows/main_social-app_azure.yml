@@ -35,8 +35,8 @@ jobs:
 
     - name: Stage React Web App
       run: |
-        mkdir -p backend/static/
-        [ -d /home/runner/work/social-app/social-app/web-build ] && cp -r /home/runner/work/social-app/social-app/web-build/* backend/static/
+        mkdir -p static/
+        [ -d /home/runner/work/social-app/social-app/web-build ] && cp -r /home/runner/work/social-app/social-app/web-build/* static/
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
@@ -53,7 +53,7 @@ jobs:
       with:
         push: true
         tags: elideus.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_78ce49491a7740b187cb15f7e08f5179 }}/elideus/social-app:${{ github.sha }}
-        file: ./backend/Dockerfile-azure
+        file: ./Dockerfile-azure
 
   deploy:
     runs-on: ubuntu-latest
@@ -71,3 +71,4 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_54b3a80aca92433f92feb30b606965e5 }}
         images: 'elideus.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_78ce49491a7740b187cb15f7e08f5179 }}/elideus/social-app:${{ github.sha }}'
+

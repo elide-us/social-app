@@ -18,7 +18,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN python -m venv $VIRTUAL_ENV && \
     . $VIRTUAL_ENV/bin/activate && \
     pip install --upgrade pip && \
-    pip install -r backend/requirements.txt
+    pip install -r requirements.txt
 
 # Expose the FastAPI port
 EXPOSE 8000
@@ -32,3 +32,4 @@ CMD ["/bin/sh", "/app/startup.sh"]
 LABEL org.opencontainers.image.source=https://github.com/elide-us/social-app
 LABEL org.opencontainers.image.description="bsky.app Web App"
 LABEL org.opencontainers.image.licenses=MIT
+

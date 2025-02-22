@@ -13,10 +13,10 @@ router = APIRouter()
 
 @router.get("/{full_path:path}")
 async def serve_react_app(full_path: str):
-  return FileResponse("backend/static/index.html")
+  return FileResponse("static/index.html")
 
 app = FastAPI(lifespan=lifespan)
-app.mount("/static", StaticFiles(directory="backend/static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 async def get_root(request: Request):
