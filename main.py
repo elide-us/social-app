@@ -17,6 +17,7 @@ async def serve_react_app(full_path: str):
 
 app = FastAPI(lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.include_router(router)
 
 @app.get("/")
 async def get_root(request: Request):
